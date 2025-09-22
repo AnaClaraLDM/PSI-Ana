@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -9,7 +9,13 @@ def index():
 
 @app.route('/contato')
 def contato():
-  return 'alba.lopes@ifrn.edu.br'
+  return render_template('contato.html')
+
+@app.route('/perfil',defaults={'nome':'fulano'})
+
+@app.route('/perfil/<nome>')
+def perfil(nome):
+    return render_template('perfil.html', nome=nome)
 
 if __name__ == '__main__':
     app.run()
